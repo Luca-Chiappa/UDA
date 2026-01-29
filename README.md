@@ -3,8 +3,6 @@
 
 ## DATA AUDIT
 
-# Documentazione: Produzione e utilizzo energia impianto fotovoltaico
-
 ## Sintesi
 Un impianto fotovoltaico medio (4,5–6 kWp) produce energia solo durante il giorno e la produzione varia nell'arco della giornata. È preferibile consumare l'energia nell'istante della produzione piuttosto che immagazzinarla, a causa delle perdite di accumulo delle batterie.
 
