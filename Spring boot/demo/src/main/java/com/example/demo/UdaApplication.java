@@ -11,3 +11,8 @@ public class UdaApplication {
 	}
 
 }
+/**
+ * Entry point dell'applicazione Spring Boot.
+ *
+ * Avvia il contesto Spring e l'applicazione.
+ */

@@ -1,4 +1,5 @@
 
+
 @Entity
 @Table(name = "Energia");
 public class Energia{
