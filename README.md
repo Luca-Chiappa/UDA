@@ -1,6 +1,50 @@
 # UDA
 # Documentazione - Sistema di Gestione Energia
 
+## Aggiornamenti Recenti - Classi Elettrodomestici
+
+### Architettura Implementata (Inheritance Hierarchy)
+
+È stata creata una gerarchia di classi per la gestione degli elettrodomestici utilizzando il pattern di ereditarietà:
+
+#### **Classe Base Astratta: `Elettrodomestico`**
+- **Attributi comuni**: 
+  - `consumoOrario` (double): consumo in kWh per ora
+  - `classeEnergetica` (String): classificazione energetica (A+, A, B, etc.)
+- **Metodi**:
+  - `getConsumoOrario()` / `setConsumoOrario()`: getter e setter per il consumo
+  - `getClasseEnergetica()` / `setClasseEnergetica()`: getter e setter per la classe energetica
+  - `calcolaConsumoAnnuale(int oreUsoGiornaliere)`: **metodo astratto** che ogni sottoclasse deve implementare
+
+#### **Classe Concreta: `Televisione`**
+- **Attributi specifici**: `pollici` (dimensione dello schermo)
+- **Implementazione**: Calcola consumo annuale moltiplicando ore giornaliere per 365 giorni
+- **Caso d'uso**: TV 32" classe E
+
+#### **Classe Concreta: `Frigorifero`**
+- **Attributi specifici**: `capacitaLitri` (capacità di stoccaggio)
+- **Implementazione**: Calcola consumo annuale considerando l'utilizzo quasi continuo
+- **Caso d'uso**: Frigo classe B con consumo medio annuale ~140 kWh
+
+#### **Classe Concreta: `Forno`**
+- **Attributi specifici**: nessuno (utilizza solo quelli della classe madre)
+- **Implementazione**: Calcola consumo basato su ore di utilizzo giornaliere
+- **Caso d'uso**: Forno classe A+ con consumo 0,82 kWh/ora (uso tipico 1-2 ore)
+
+#### **Classe Concreta: `Climatizzatore`**
+- **Attributi specifici**: `potenzaBTU` (potenza di raffreddamento/riscaldamento)
+- **Implementazione**: Calcola consumi annuali variabili
+- **Caso d'uso**: Classe A++ con consumi differenziati
+  - Raffreddamento: 1,96 kWh/h
+  - Riscaldamento: 2,6 kWh/h
+
+#### **Classe Concreta: `Lavatrice`**
+- **Attributi specifici**: `durataCiclo` (durata del ciclo in minuti)
+- **Implementazione**: Calcola consumo annuale basato su cicli giornalieri
+- **Caso d'uso**: Classe A con cicli di 45-90 minuti
+
+---
+
 ## DATA AUDIT
 
 ## Sintesi
