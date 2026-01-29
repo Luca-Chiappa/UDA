@@ -1,9 +1,7 @@
 # UDA
 # Documentazione - Sistema di Gestione Energia
 
-## Aggiornamenti Recenti - Classi Elettrodomestici
-
-### Architettura Implementata (Inheritance Hierarchy)
+### Architettura Implementata
 
 È stata creata una gerarchia di classi per la gestione degli elettrodomestici utilizzando il pattern di ereditarietà:
 
