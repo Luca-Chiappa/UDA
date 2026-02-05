@@ -9,13 +9,30 @@
         <th>Classe Energetica</th>
         <th>Consumo Orario</th>
     </tr>
-    {% for e in energia %}
-    <tr>
-        <td>{{ e.id }}</td>
-        <td>{{ e.classeEnergetica }}</td>
-        <td>{{ e.consumoOrario }} kWh</td>
-    </tr>
-    {% endfor %}
+    <tbody id="energia-body">
+        <!-- I dati saranno caricati via fetch dalle API Spring Boot -->
+    </tbody>
 </table>
+
+<script>
+    async function loadEnergia() {
+        try {
+            const res = await fetch('http://localhost:8080/energia');
+            if (!res.ok) throw new Error('Errore nella risposta della API');
+            const data = await res.json();
+            const tbody = document.getElementById('energia-body');
+            tbody.innerHTML = '';
+            data.forEach(e => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${e.id ?? ''}</td><td>${e.classeEnergetica ?? ''}</td><td>${e.consumoOrario ?? ''} kWh</td>`;
+                tbody.appendChild(tr);
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadEnergia);
+</script>
 
 {% endblock %}

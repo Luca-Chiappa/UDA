@@ -27,7 +27,7 @@ public abstract class Elettrodomestico {
     }
 
     public boolean getAttivo(){
-        return attivo
+        return attivo;
     }
 
     public void setAttivo(boolean attivo){
@@ -79,7 +79,7 @@ public abstract class Elettrodomestico {
      */
     public abstract double calcolaConsumoAnnuale(int oreUsoGiornaliere);
 
-    public abstract void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato)
+    public abstract void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato);
 
     @Override
     public String toString(){

@@ -1,7 +1,8 @@
-package com.example.demo.repository;
+package com.example.demo;
 
-import com.example.demo.model.Studente;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.Energia;
 
 /**
  * Repository JPA per l'entità Energia.
