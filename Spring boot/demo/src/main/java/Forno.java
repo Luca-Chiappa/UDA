@@ -24,7 +24,11 @@ public class Forno extends Elettrodomestico{
      * @return consumo annuale in kWh
      */
 
-    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato)
+    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
+        if(soleggiato==true){
+            if
+        }
+    }
 
 
     @Override
