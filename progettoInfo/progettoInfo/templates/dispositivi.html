@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Elettrodomestici</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Classe Energetica</th>
+        <th>Consumo Orario</th>
+    </tr>
+    {% for e in energia %}
+    <tr>
+        <td>{{ e.id }}</td>
+        <td>{{ e.classeEnergetica }}</td>
+        <td>{{ e.consumoOrario }} kWh</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

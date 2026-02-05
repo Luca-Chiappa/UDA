@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">⚡ SmartGrid</div>
+    <nav>
+        <a href="/">Dashboard</a>
+        <a href="/dispositivi">Elettrodomestici</a>
+        <a href="/simulazione">Simulazione</a>
+        <a href="/report">Report</a>
+    </nav>
+</header>
+
+<main class="content">
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Dashboard Energetica</h1>
+
+<div class="cards">
+    <div class="card">
+        <h3>Produzione Totale</h3>
+        <p>{{ produzione_totale }} kWh</p>
+    </div>
+    <div class="card">
+        <h3>Consumo Totale</h3>
+        <p>{{ consumo_totale }} kWh</p>
+    </div>
+    <div class="card">
+        <h3>Surplus</h3>
+        <p>{{ surplus }} kWh</p>
+    </div>
+</div>
+
+<br>
+
+<div class="card">
+    <h3>Produzione Solare Giornaliera</h3>
+    <canvas id="graficoProduzione"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/charts.js"></script>
+
+{% endblock %}
