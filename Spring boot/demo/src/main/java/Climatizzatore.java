@@ -28,7 +28,23 @@ public class Climatizzatore extends Elettrodomestico{
     public double getPotenzaBTU(){
         return potenzaBTU;
     }
-    
+    @Override
+    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
+        if(soleggiato == true)
+        {
+            if(orarioAttuale>11 && orarioAttuale<15){
+                if(temperaturaEsterna>20){
+                    System.out.println("Fortemente consigliato di accendere")
+                }
+                System.out.println("Si può accendere")
+            }
+            System.out.println("Meglio di no")
+        }
+        else{
+            System.out.println("No")
+        }
+
+    }
     /**
      * Imposta la potenza del climatizzatore.
      * 

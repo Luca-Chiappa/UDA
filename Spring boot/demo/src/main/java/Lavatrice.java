@@ -28,6 +28,7 @@ public class Lavatrice extends Elettrodomestico{
         return durataCiclo;
     }
     
+    
     /**
      * Imposta la durata del ciclo di lavaggio.
      * 

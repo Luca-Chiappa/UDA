@@ -23,6 +23,10 @@ public class Forno extends Elettrodomestico{
      * @param oreUsoGiornaliere numero di ore di utilizzo giornaliero
      * @return consumo annuale in kWh
      */
+
+    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato)
+
+
     @Override
     public double calcolaConsumoAnnuale(int oreUsoGiornaliere){
         double consumoGiornaliere;

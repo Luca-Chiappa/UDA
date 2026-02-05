@@ -11,17 +11,27 @@ public abstract class Elettrodomestico {
     
     /** Classe energetica dell'elettrodomestico (A+, A, B, ecc.) */
     private String classeEnergetica;
-    
+    private boolean attivo;
     /**
      * Costruttore per inizializzare un elettrodomestico.
      * 
      * @param consumoOrario consumo orario in kWh
      * @param classeEnergetica classe energetica dell'apparecchio
      */
-    public Elettrodomestico(double consumoOrario, String classeEnergetica)
+    public Elettrodomestico(double consumoOrario, String classeEnergetica,boolean attivo)
     {
         this.consumoOrario = consumoOrario;
         this.classeEnergetica = classeEnergetica;
+        this.attivo=attivo;
+
+    }
+
+    public boolean getAttivo(){
+        return attivo
+    }
+
+    public void setAttivo(boolean attivo){
+        this.attivo=attivo;
     }
 
     /**
@@ -68,6 +78,8 @@ public abstract class Elettrodomestico {
      * @return consumo annuale in kWh
      */
     public abstract double calcolaConsumoAnnuale(int oreUsoGiornaliere);
+
+    public abstract void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato)
 
     @Override
     public String toString(){
