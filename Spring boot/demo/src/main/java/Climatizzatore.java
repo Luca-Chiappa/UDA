@@ -36,12 +36,12 @@ public class Climatizzatore extends Elettrodomestico{
                 if(temperaturaEsterna>20){
                     System.out.println("Fortemente consigliato di accendere")
                 }
-                System.out.println("Si può accendere")
+                System.out.println("Si può accendere");
             }
-            System.out.println("Meglio di no")
+            System.out.println("Meglio di no");
         }
         else{
-            System.out.println("No")
+            System.out.println("No");
         }
 
     }
