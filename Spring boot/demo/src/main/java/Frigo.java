@@ -57,4 +57,5 @@ public class Frigo extends Elettrodomestico{
     @Override
     public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
         System.out.println("Il frigo deve essere sempre accesa a meno che è vuota");
+    }
 }

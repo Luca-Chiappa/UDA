@@ -69,5 +69,6 @@ public class Televisione extends Elettrodomestico{
         else{
             System.out.println("No, non è consigliato accendere la televisione");
         }
+    }
 
 }

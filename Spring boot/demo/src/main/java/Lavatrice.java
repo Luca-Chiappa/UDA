@@ -68,10 +68,12 @@ public class Lavatrice extends Elettrodomestico{
         else{
             System.out.println("No, non è assulutamente consigliabile accendere la lavatrice");
         }
+    }
 
     @Override
     public String toString(){
         return super.toString()+",Durata ciclo:"+durataCiclo+" min";
     }
+
 
 }
