@@ -11,8 +11,8 @@ public class Forno extends Elettrodomestico{
      * @param consumoOrario consumo orario in kWh
      * @param classeEnergetica classe energetica del forno
      */
-    public Forno(double consumoOrario, String classeEnergetica){
-        super(consumoOrario,classeEnergetica);
+    public Forno(double consumoOrario, String classeEnergetica,boolean attivo){
+        super(consumoOrario,classeEnergetica,attivo);
     }
     
     /**
@@ -24,9 +24,20 @@ public class Forno extends Elettrodomestico{
      * @return consumo annuale in kWh
      */
 
+    @Override
     public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
-        if(soleggiato==true){
-            if
+        if(soleggiato == true)
+        {
+            if(orarioAttuale>11 && orarioAttuale<15){
+                if(temperaturaEsterna>20){
+                    System.out.println("Fortemente consigliato di accendere il forno")
+                }
+                System.out.println("Si può accendere il forno");
+            }
+            System.out.println("Meglio di non accendere il forno");
+        }
+        else{
+            System.out.println("No, non è assultamente consigliato accendere il forno");
         }
     }
 

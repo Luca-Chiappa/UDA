@@ -14,8 +14,8 @@ public class Lavatrice extends Elettrodomestico{
      * @param classeEnergetica classe energetica della lavatrice
      * @param durataCiclo durata del ciclo di lavaggio in minuti
      */
-    public Lavatrice(double consumoOrario,String classeEnergetica,double durataCiclo){
-        super(consumoOrario,classeEnergetica);
+    public Lavatrice(double consumoOrario,String classeEnergetica,boolean attivo,double durataCiclo){
+        super(consumoOrario,classeEnergetica,attivo);
         this.durataCiclo=durataCiclo;
     }
 
@@ -52,6 +52,22 @@ public class Lavatrice extends Elettrodomestico{
         consumoGiornaliere=getConsumoOrario()*oreUsoGiornaliere;
         return consumoGiornaliere*365;
     }
+
+    @Override
+    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
+        if(soleggiato == true)
+        {
+            if(orarioAttuale>11 && orarioAttuale<15){
+                if(temperaturaEsterna>20){
+                    System.out.println("Fortemente consigliato di accendere la lavatrice")
+                }
+                System.out.println("Si può accendere la lavatrice");
+            }
+            System.out.println("Meglio di non accendere la lavatrice");
+        }
+        else{
+            System.out.println("No, non è assulutamente consigliabile accendere la lavatrice");
+        }
 
     @Override
     public String toString(){

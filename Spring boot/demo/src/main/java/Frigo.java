@@ -14,8 +14,8 @@ public class Frigo extends Elettrodomestico{
      * @param classeEnergetica classe energetica del frigorifero
      * @param capacitaLitri capacità di stoccaggio in litri
      */
-    public Frigo(double consumoOrario,String classeEnergetica,double capacitaLitri){
-        super(consumoOrario, classeEnergetica);
+    public Frigo(double consumoOrario,String classeEnergetica,boolean attivo,double capacitaLitri){
+        super(consumoOrario, classeEnergetica,attivo);
         this.capacitaLitri=capacitaLitri;
     }
     
@@ -54,4 +54,7 @@ public class Frigo extends Elettrodomestico{
     public double calcolaConsumoAnnuale(int oreUsoGiornaliere){
         return getConsumoOrario()*oreUsoGiornaliere*365;
     }
+    @Override
+    public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
+        System.out.println("Il frigo deve essere sempre accesa a meno che è vuota")
 }

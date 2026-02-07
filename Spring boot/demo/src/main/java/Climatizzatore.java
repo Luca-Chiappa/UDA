@@ -15,8 +15,8 @@ public class Climatizzatore extends Elettrodomestico{
      * @param classeEnergetica classe energetica del climatizzatore
      * @param potenzaBTU potenza in BTU
      */
-    public Climatizzatore(double consumoOrario,String classeEnergetica,double potenzaBTU){
-        super(consumoOrario,classeEnergetica);
+    public Climatizzatore(double consumoOrario,String classeEnergetica,boolean attivo,double potenzaBTU){
+        super(consumoOrario,classeEnergetica,attivo);
         this.potenzaBTU=potenzaBTU;
     }
     
