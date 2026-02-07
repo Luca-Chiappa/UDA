@@ -60,7 +60,7 @@ public class Televisione extends Elettrodomestico{
         {
             if(orarioAttuale>11 && orarioAttuale<15){
                 if(temperaturaEsterna>20){
-                    System.out.println("Fortemente consigliato di accendere la televisione")
+                    System.out.println("Fortemente consigliato di accendere la televisione");
                 }
                 System.out.println("Si può accendere la televisione");
             }

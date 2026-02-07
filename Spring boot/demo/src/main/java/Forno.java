@@ -30,7 +30,7 @@ public class Forno extends Elettrodomestico{
         {
             if(orarioAttuale>11 && orarioAttuale<15){
                 if(temperaturaEsterna>20){
-                    System.out.println("Fortemente consigliato di accendere il forno")
+                    System.out.println("Fortemente consigliato di accendere il forno");
                 }
                 System.out.println("Si può accendere il forno");
             }

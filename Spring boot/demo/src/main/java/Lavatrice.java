@@ -59,7 +59,7 @@ public class Lavatrice extends Elettrodomestico{
         {
             if(orarioAttuale>11 && orarioAttuale<15){
                 if(temperaturaEsterna>20){
-                    System.out.println("Fortemente consigliato di accendere la lavatrice")
+                    System.out.println("Fortemente consigliato di accendere la lavatrice");
                 }
                 System.out.println("Si può accendere la lavatrice");
             }

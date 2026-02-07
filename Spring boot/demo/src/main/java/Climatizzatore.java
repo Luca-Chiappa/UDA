@@ -34,7 +34,7 @@ public class Climatizzatore extends Elettrodomestico{
         {
             if(orarioAttuale>11 && orarioAttuale<15){
                 if(temperaturaEsterna>20){
-                    System.out.println("Fortemente consigliato di accendere")
+                    System.out.println("Fortemente consigliato di accendere");
                 }
                 System.out.println("Si può accendere");
             }
