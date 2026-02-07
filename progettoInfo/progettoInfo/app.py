@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import requests
 
 app = Flask(__name__)
 
@@ -27,6 +28,20 @@ def dispositivi():
 @app.route("/simulazione")
 def simulazione():
     return render_template("simulazione.html", title="Simulazione")
+
+
+@app.route('/api/elettrodomestici')
+def api_elettrodomestici():
+    """Proxy verso il backend Spring Boot che espone /elettrodomestici su http://localhost:8080
+
+    Questo permette alla UI Flask di fare fetch in same-origin senza problemi di CORS.
+    """
+    try:
+        resp = requests.get('http://localhost:8080/elettrodomestici', timeout=5)
+        resp.raise_for_status()
+        return jsonify(resp.json())
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': str(e)}), 502
 
 @app.route("/report")
 def report():

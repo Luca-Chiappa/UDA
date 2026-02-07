@@ -1,29 +1,19 @@
-/**
- * Classe che rappresenta un forno.
- * 
- * Estende Elettrodomestico e rappresenta un forno da cucina.
- * Non possiede attributi specifici oltre a quelli della classe madre.
- */
+package com.example.demo;
+
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Forno")
 public class Forno extends Elettrodomestico{
-    /**
-     * Costruttore per inizializzare un forno.
-     * 
-     * @param consumoOrario consumo orario in kWh
-     * @param classeEnergetica classe energetica del forno
-     */
+    public Forno(){
+        super(0.0,"",false);
+    }
+
     public Forno(double consumoOrario, String classeEnergetica,boolean attivo){
         super(consumoOrario,classeEnergetica,attivo);
     }
     
-    /**
-     * Calcola il consumo annuale del forno.
-     * Formula: consumo orario * ore di utilizzo giornaliere * 365 giorni
-     * Tipicamente utilizzato 1-2 ore per utilizzo.
-     * 
-     * @param oreUsoGiornaliere numero di ore di utilizzo giornaliero
-     * @return consumo annuale in kWh
-     */
-
     @Override
     public void consiglio(int orarioAttuale,int temperaturaEsterna,boolean soleggiato){
         if(soleggiato == true)

@@ -1,51 +1,32 @@
-/**
- * Classe che rappresenta una lavatrice.
- * 
- * Estende Elettrodomestico e aggiunge l'attributo specifico della durata del ciclo di lavaggio in minuti.
- */
+package com.example.demo;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Lavatrice")
 public class Lavatrice extends Elettrodomestico{
-    /** Durata di un ciclo di lavaggio in minuti */
+    @Column
     private double durataCiclo;
 
-    /**
-     * Costruttore per inizializzare una lavatrice.
-     * 
-     * @param consumoOrario consumo orario in kWh
-     * @param classeEnergetica classe energetica della lavatrice
-     * @param durataCiclo durata del ciclo di lavaggio in minuti
-     */
+    public Lavatrice(){
+        super(0.0,"",false);
+    }
+
     public Lavatrice(double consumoOrario,String classeEnergetica,boolean attivo,double durataCiclo){
         super(consumoOrario,classeEnergetica,attivo);
         this.durataCiclo=durataCiclo;
     }
 
-    /**
-     * Restituisce la durata del ciclo di lavaggio.
-     * 
-     * @return durata in minuti
-     */
     public double getDurataCiclo(){
         return durataCiclo;
     }
     
-    
-    /**
-     * Imposta la durata del ciclo di lavaggio.
-     * 
-     * @param durataCiclo durata in minuti
-     */
     public void setDurataCiclo(double durataCiclo){
         this.durataCiclo = durataCiclo;
     }
 
-    /**
-     * Calcola il consumo annuale della lavatrice.
-     * Formula: consumo orario * ore di utilizzo giornaliere * 365 giorni
-     * Considerando che un ciclo tipico dura 45-90 minuti.
-     * 
-     * @param oreUsoGiornaliere numero di ore di utilizzo giornaliero
-     * @return consumo annuale in kWh
-     */
     @Override
     public double calcolaConsumoAnnuale(int oreUsoGiornaliere){
         double consumoGiornaliere;
@@ -74,6 +55,4 @@ public class Lavatrice extends Elettrodomestico{
     public String toString(){
         return super.toString()+",Durata ciclo:"+durataCiclo+" min";
     }
-
-
 }

@@ -17,18 +17,25 @@
 <script>
     async function loadEnergia() {
         try {
-            const res = await fetch('http://localhost:8080/energia');
+            const res = await fetch('/api/elettrodomestici');
             if (!res.ok) throw new Error('Errore nella risposta della API');
             const data = await res.json();
             const tbody = document.getElementById('energia-body');
             tbody.innerHTML = '';
             data.forEach(e => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${e.id ?? ''}</td><td>${e.classeEnergetica ?? ''}</td><td>${e.consumoOrario ?? ''} kWh</td>`;
+                const tipo = e.type || e.tipo || '';
+                const dettaglio = (tipo === 'Frigo') ? (e.capacitaLitri ? `${e.capacitaLitri} L` : '') :
+                                 (tipo === 'Lavatrice') ? (e.durataCiclo ? `${e.durataCiclo} min` : '') :
+                                 (tipo === 'Televisione') ? (e.pollici ? `${e.pollici}\"` : '') :
+                                 (tipo === 'Climatizzatore') ? (e.potenzaBTU ? `${e.potenzaBTU} BTU` : '') : '';
+                tr.innerHTML = `<td>${e.id ?? ''}</td><td>${tipo}</td><td>${e.classeEnergetica ?? ''}</td><td>${e.consumoOrario ?? ''} kWh</td><td>${dettaglio}</td>`;
                 tbody.appendChild(tr);
             });
         } catch (err) {
             console.error(err);
+            const tbody = document.getElementById('energia-body');
+            tbody.innerHTML = `<tr><td colspan="5">Impossibile caricare i dispositivi: ${err.message}</td></tr>`;
         }
     }
 
