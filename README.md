@@ -73,9 +73,9 @@ Un impianto fotovoltaico medio (4,5–6 kWp) produce energia solo durante il gio
 - Lavatrice (classe A)
   - Durata ciclo: 45–90 minuti
   - Consumo riportato: 42 kWh per ora (dati forniti)
-- Televisione (classe bassa, es. E)
+- Televisione (classe bassa, es. F)
   - Display 32"
-  - Consumo: 26 Wh
+  - Consumo: 0,037KWh
 
 ## Esempio pratico di gestione
 - Durante il picco (11–15): accendere lavatrice, forno, climatizzatore se necessario.
