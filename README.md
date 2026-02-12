@@ -33,8 +33,8 @@
 - **Attributi specifici**: `potenzaBTU` (potenza di raffreddamento/riscaldamento)
 - **Implementazione**: Calcola consumi annuali variabili
 - **Caso d'uso**: Classe A++ con consumi differenziati
-  - Raffreddamento: 1,96 kWh/h
-  - Riscaldamento: 2,6 kWh/h
+  - Raffreddamento: 1,96 kWh
+  - Riscaldamento: 2,6 kWh
 
 #### **Classe Concreta: `Lavatrice`**
 - **Attributi specifici**: `durataCiclo` (durata del ciclo in minuti)
@@ -69,7 +69,7 @@ Un impianto fotovoltaico medio (4,5–6 kWp) produce energia solo durante il gio
   - Consumo: 0,82 kWh
 - Climatizzatore (classe A++)
   - Funzioni: raffreddamento e riscaldamento
-  - Consumo: 1,96 kWh/ora (raffreddamento), 2,6 kWh/ora (riscaldamento)
+  - Consumo: 1,96 kW per ogni ora di raffredamento, 2,6 kW per ogni ora di riscaldamento
 - Lavatrice (classe A)
   - Durata ciclo: 45–90 minuti
   - Consumo riportato: 0,42 kWh (dati forniti)
