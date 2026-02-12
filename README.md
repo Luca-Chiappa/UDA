@@ -7,7 +7,7 @@
 
 #### **Classe Base Astratta: `Elettrodomestico`**
 - **Attributi comuni**: 
-  - `consumoOrario` (double): consumo in kWh per ora
+  - `consumoOrario` (double): consumo in kWh
   - `classeEnergetica` (String): classificazione energetica (A+, A, B, etc.)
 - **Metodi**:
   - `getConsumoOrario()` / `setConsumoOrario()`: getter e setter per il consumo
@@ -22,12 +22,12 @@
 #### **Classe Concreta: `Frigorifero`**
 - **Attributi specifici**: `capacitaLitri` (capacità di stoccaggio)
 - **Implementazione**: Calcola consumo annuale considerando l'utilizzo quasi continuo
-- **Caso d'uso**: Frigo classe B con consumo medio annuale ~140 kWh
+- **Caso d'uso**: Frigo classe B con consumo medio 0,38 kW per ogni giorno
 
 #### **Classe Concreta: `Forno`**
 - **Attributi specifici**: nessuno (utilizza solo quelli della classe madre)
 - **Implementazione**: Calcola consumo basato su ore di utilizzo giornaliere
-- **Caso d'uso**: Forno classe A+ con consumo 0,82 kWh/ora (uso tipico 1-2 ore)
+- **Caso d'uso**: Forno classe A+ con consumo 0,82 kWh (uso medio 15 min al giorno)
 
 #### **Classe Concreta: `Climatizzatore`**
 - **Attributi specifici**: `potenzaBTU` (potenza di raffreddamento/riscaldamento)
@@ -65,14 +65,14 @@ Un impianto fotovoltaico medio (4,5–6 kWp) produce energia solo durante il gio
   - Consumo giornaliero: 0,38 kWh
   - Funzionamento continuo; basso consumo grazie al termostato che interrompe il ciclo di raffreddamento.
 - Forno (classe A+)
-  - Uso tipico: 1–2 ore per utilizzo
-  - Consumo: 0,82 kWh per ora
+  - Uso medio giornaliero: 15 minuti
+  - Consumo: 0,82 kWh
 - Climatizzatore (classe A++)
   - Funzioni: raffreddamento e riscaldamento
   - Consumo: 1,96 kWh/ora (raffreddamento), 2,6 kWh/ora (riscaldamento)
 - Lavatrice (classe A)
   - Durata ciclo: 45–90 minuti
-  - Consumo riportato: 42 kWh per ora (dati forniti)
+  - Consumo riportato: 0,42 kWh (dati forniti)
 - Televisione (classe bassa, es. F)
   - Display 32"
   - Consumo: 0,037KWh
