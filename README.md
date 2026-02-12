@@ -17,7 +17,7 @@
 #### **Classe Concreta: `Televisione`**
 - **Attributi specifici**: `pollici` (dimensione dello schermo)
 - **Implementazione**: Calcola consumo annuale moltiplicando ore giornaliere per 365 giorni
-- **Caso d'uso**: TV 32" classe E
+- **Caso d'uso**: TV 32" classe F
 
 #### **Classe Concreta: `Frigorifero`**
 - **Attributi specifici**: `capacitaLitri` (capacità di stoccaggio)
