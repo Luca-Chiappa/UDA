@@ -11,7 +11,7 @@
     <tr>
         <th>ID</th>
         <th>Nome</th>
-        <th>Consumo KW/h</th>
+        <th>Consumo</th>
         <th>Classe Energetica</th>
         <th>Azioni</th>
     </tr>
@@ -39,6 +39,11 @@ function openModal() {
  
 function closeModal() {
     document.getElementById("modal").style.display = "none";
+ 
+    
+    document.getElementById("nome").value = "";
+    document.getElementById("consumo").value = "";
+    document.getElementById("classe").value = "";
 }
  
 function aggiungi() {
@@ -60,6 +65,12 @@ function aggiungi() {
     `;
  
     idCounter++;
+ 
+    
+    document.getElementById("nome").value = "";
+    document.getElementById("consumo").value = "";
+    document.getElementById("classe").value = "";
+ 
     closeModal();
 }
 </script>
