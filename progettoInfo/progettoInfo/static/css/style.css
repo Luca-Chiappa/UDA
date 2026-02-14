@@ -107,3 +107,139 @@ input[type="number"] {
     color: #eaeaea;
     margin-left: 10px;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.4);
+    color: #eaeaea;
+}
+
+.modal-content .close {
+    background: #e74c3c;
+    margin-left: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.4);
+    color: #eaeaea;
+}
+
+.modal-content .close {
+    background: #e74c3c;
+    margin-left: 10px;
+}
+
+#tabella {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#tabella th, 
+#tabella td {
+    text-align: left;
+    padding: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#tabella-elettrodomestici {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#tabella-elettrodomestici th,
+#tabella-elettrodomestici td {
+    text-align: left;
+    padding: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.4);
+    color: #eaeaea;
+}
+
+.modal-content .close {
+    background: #e74c3c;
+    margin-left: 10px;
+}

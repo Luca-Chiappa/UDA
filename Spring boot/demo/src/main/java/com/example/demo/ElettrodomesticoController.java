@@ -43,7 +43,6 @@ public class ElettrodomesticoController {
         Map<String, Object> response = new HashMap<>();
         
         try {
-            // Validazione dati
             if (e.getConsumoOrario() <= 0) {
                 response.put("success", false);
                 response.put("message", "Il consumo orario deve essere maggiore di 0");
@@ -56,7 +55,6 @@ public class ElettrodomesticoController {
                 return ResponseEntity.badRequest().body(response);
             }
             
-            // Salva nel database
             Elettrodomestico saved = service.salva(e);
             
             response.put("success", true);

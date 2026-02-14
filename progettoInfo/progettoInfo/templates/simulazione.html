@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Simulazione</h1>
+<h1>Simulazione Energetica</h1>
 
 <div class="card">
     <label>Ore di utilizzo:</label>
@@ -11,14 +11,52 @@
 
 <br>
 
-<div class="card">
-    <h3>Risultato Simulazione</h3>
-    <pre id="output"></pre>
+<div class="cards">
+    <div class="card" id="card-produzione">
+        <h3>Produzione Totale</h3>
+        <p id="prod-tot">0 kWh</p>
+    </div>
+
+    <div class="card" id="card-consumo">
+        <h3>Consumo Totale</h3>
+        <p id="cons-tot">0 kWh</p>
+    </div>
+
+    <div class="card" id="card-surplus">
+        <h3>Surplus Totale</h3>
+        <p id="surp-tot">0 kWh</p>
+    </div>
 </div>
 
+<br>
+
+<div class="card">
+    <h3>Andamento Produzione/Consumo</h3>
+    <canvas id="graficoSimulazione"></canvas>
+</div>
+
+<br>
+
+<div class="card">
+    <h3>Dettaglio Orario</h3>
+    <table id="tabella-simulazione">
+        <tr>
+            <th>Ora</th>
+            <th>Produzione</th>
+            <th>Consumo</th>
+            <th>Surplus</th>
+        </tr>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+let chart = null;
+
 function simula() {
     const ore = document.getElementById("ore").value;
+
     fetch("/api/simula", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -26,7 +64,91 @@ function simula() {
     })
     .then(r => r.json())
     .then(data => {
-        document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        aggiornaCard(data.timeline);
+        aggiornaTabella(data.timeline);
+        aggiornaGrafico(data.timeline);
+    });
+}
+
+function aggiornaCard(timeline) {
+    let prod = 0, cons = 0;
+
+    timeline.forEach(r => {
+        prod += r.produzione;
+        cons += r.consumo;
+    });
+
+    const surp = prod - cons;
+
+    document.getElementById("prod-tot").textContent = prod.toFixed(2) + " kWh";
+    document.getElementById("cons-tot").textContent = cons.toFixed(2) + " kWh";
+    document.getElementById("surp-tot").textContent = surp.toFixed(2) + " kWh";
+}
+
+function aggiornaTabella(timeline) {
+    const table = document.getElementById("tabella-simulazione");
+    table.innerHTML = `
+        <tr>
+            <th>Ora</th>
+            <th>Produzione</th>
+            <th>Consumo</th>
+            <th>Surplus</th>
+        </tr>
+    `;
+
+    timeline.forEach(r => {
+        table.innerHTML += `
+            <tr>
+                <td>${r.ora}</td>
+                <td>${r.produzione} kW</td>
+                <td>${r.consumo} kW</td>
+                <td>${r.surplus} kW</td>
+            </tr>
+        `;
+    });
+}
+
+function aggiornaGrafico(timeline) {
+    const labels = timeline.map(r => r.ora);
+    const produzione = timeline.map(r => r.produzione);
+    const consumo = timeline.map(r => r.consumo);
+
+    const ctx = document.getElementById("graficoSimulazione");
+
+    if (chart) chart.destroy();
+
+    chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Produzione (kW)",
+                    data: produzione,
+                    borderColor: "#2ecc71",
+                    backgroundColor: "rgba(46,204,113,0.15)",
+                    tension: 0.35,
+                    fill: true
+                },
+                {
+                    label: "Consumo (kW)",
+                    data: consumo,
+                    borderColor: "#e74c3c",
+                    backgroundColor: "rgba(231,76,60,0.15)",
+                    tension: 0.35,
+                    fill: true
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                legend: { labels: { color: "#eaeaea" } }
+            },
+            scales: {
+                x: { ticks: { color: "#eaeaea" } },
+                y: { ticks: { color: "#eaeaea" } }
+            }
+        }
     });
 }
 </script>

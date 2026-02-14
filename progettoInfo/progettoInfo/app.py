@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-import requests
 
 app = Flask(__name__)
 
@@ -29,34 +28,39 @@ def dispositivi():
 def simulazione():
     return render_template("simulazione.html", title="Simulazione")
 
-
-@app.route('/api/elettrodomestici')
-def api_elettrodomestici():
-    """Proxy verso il backend Spring Boot che espone /elettrodomestici su http://localhost:8080
-
-    Questo permette alla UI Flask di fare fetch in same-origin senza problemi di CORS.
-    """
-    try:
-        resp = requests.get('http://localhost:8080/elettrodomestici', timeout=5)
-        resp.raise_for_status()
-        return jsonify(resp.json())
-    except requests.exceptions.RequestException as e:
-        return jsonify({'error': str(e)}), 502
-
 @app.route("/report")
 def report():
     return render_template("report.html", title="Report")
+
+@app.route("/tabella")
+def tabella():
+    return render_template("tabella.html", title="Tabella Dinamica")
 
 @app.route("/api/simula", methods=["POST"])
 def simula():
     dati = request.json
     ore = int(dati.get("oreUso", 2))
-    timeline = [
-        {"ora": "08:00", "produzione": 0.5, "consumo": 0.3, "surplus": 0.2},
-        {"ora": "09:00", "produzione": 0.8, "consumo": 0.4, "surplus": 0.4},
-        {"ora": "10:00", "produzione": 1.2, "consumo": 0.6, "surplus": 0.6},
-    ]
+
+    timeline = []
+    produzione_base = 0.5
+    consumo_base = 0.3
+
+    for i in range(ore):
+        ora = f"{8 + i:02d}:00"
+        produzione = round(produzione_base + i * 0.1, 2)
+        consumo = round(consumo_base + i * 0.05, 2)
+        surplus = round(produzione - consumo, 2)
+
+        timeline.append({
+            "ora": ora,
+            "produzione": produzione,
+            "consumo": consumo,
+            "surplus": surplus
+        })
+
     return jsonify({"oreUso": ore, "timeline": timeline})
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

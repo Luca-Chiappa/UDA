@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<h1>Tabella</h1>
+ 
+<button class="btn" onclick="openModal()">Aggiungi riga</button>
+ 
+<br><br>
+ 
+<table id="tabella">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Consumo KW/h</th>
+        <th>Classe Energetica</th>
+        <th>Azioni</th>
+    </tr>
+</table>
+ 
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Nuovo elemento</h3>
+ 
+        <input id="nome" placeholder="Nome">
+        <input id="consumo" placeholder="Consumo">
+        <input id="classe" placeholder="Classe Energetica">
+ 
+        <button class="btn" onclick="aggiungi()">Aggiungi</button>
+        <button class="btn close" onclick="closeModal()">Chiudi</button>
+    </div>
+</div>
+ 
+<script>
+let idCounter = 1;
+ 
+function openModal() {
+    document.getElementById("modal").style.display = "flex";
+}
+ 
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+ 
+function aggiungi() {
+    const nome = document.getElementById("nome").value;
+    const consumo = document.getElementById("consumo").value;
+    const classe = document.getElementById("classe").value;
+ 
+    if (!nome || !consumo || !classe) return;
+ 
+    const table = document.getElementById("tabella");
+ 
+    const row = table.insertRow(-1);
+    row.innerHTML = `
+        <td>${idCounter}</td>
+        <td>${nome}</td>
+        <td>${consumo}</td>
+        <td>${classe}</td>
+        <td><button class="btn" onclick="this.parentNode.parentNode.remove()">Elimina</button></td>
+    `;
+ 
+    idCounter++;
+    closeModal();
+}
+</script>
+ 
+{% endblock %}
+ 
+ 
