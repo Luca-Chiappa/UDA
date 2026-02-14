@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,36 @@ public class ElettrodomesticoController {
     }
 
     @PostMapping
-    public Elettrodomestico create(@RequestBody Elettrodomestico e) {
-        return service.salva(e);
+    public ResponseEntity<Map<String, Object>> create(@RequestBody Elettrodomestico e) {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            // Validazione dati
+            if (e.getConsumoOrario() <= 0) {
+                response.put("success", false);
+                response.put("message", "Il consumo orario deve essere maggiore di 0");
+                return ResponseEntity.badRequest().body(response);
+            }
+            
+            if (e.getClasseEnergetica() == null || e.getClasseEnergetica().isEmpty()) {
+                response.put("success", false);
+                response.put("message", "La classe energetica è obbligatoria");
+                return ResponseEntity.badRequest().body(response);
+            }
+            
+            // Salva nel database
+            Elettrodomestico saved = service.salva(e);
+            
+            response.put("success", true);
+            response.put("message", "Dispositivo aggiunto con successo");
+            response.put("data", saved);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            
+        } catch (Exception ex) {
+            response.put("success", false);
+            response.put("message", "Errore durante l'inserimento: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 
     @DeleteMapping("/{id}")
