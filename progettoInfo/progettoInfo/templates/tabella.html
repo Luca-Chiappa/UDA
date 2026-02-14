@@ -10,7 +10,7 @@
 <table id="tabella">
     <tr>
         <th>ID</th>
-        <th>Nome</th>
+        <th>Tipo</th>
         <th>Consumo</th>
         <th>Classe Energetica</th>
         <th>Azioni</th>
@@ -31,48 +31,79 @@
 </div>
  
 <script>
-let idCounter = 1;
- 
 function openModal() {
     document.getElementById("modal").style.display = "flex";
 }
  
 function closeModal() {
     document.getElementById("modal").style.display = "none";
- 
-    
     document.getElementById("nome").value = "";
     document.getElementById("consumo").value = "";
     document.getElementById("classe").value = "";
 }
  
-function aggiungi() {
+async function loadTable() {
+    try {
+        const res = await fetch('/api/elettrodomestici');
+        if (!res.ok) throw new Error('Errore caricamento');
+        const items = await res.json();
+        const table = document.getElementById('tabella');
+        // remove existing rows except header
+        table.querySelectorAll('tr:not(:first-child)').forEach(r => r.remove());
+        items.forEach(e => {
+            const row = table.insertRow(-1);
+            const tipo = e.tipo || e.type || '';
+            row.innerHTML = `
+                <td>${e.id}</td>
+                <td>${tipo}</td>
+                <td>${e.consumoOrario}</td>
+                <td>${e.classeEnergetica}</td>
+                <td><button class="btn" onclick="deleteItem(${e.id})">Elimina</button></td>
+            `;
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
+ 
+async function aggiungi() {
     const nome = document.getElementById("nome").value;
     const consumo = document.getElementById("consumo").value;
     const classe = document.getElementById("classe").value;
  
     if (!nome || !consumo || !classe) return;
  
-    const table = document.getElementById("tabella");
- 
-    const row = table.insertRow(-1);
-    row.innerHTML = `
-        <td>${idCounter}</td>
-        <td>${nome}</td>
-        <td>${consumo}</td>
-        <td>${classe}</td>
-        <td><button class="btn" onclick="this.parentNode.parentNode.remove()">Elimina</button></td>
-    `;
- 
-    idCounter++;
- 
-    
-    document.getElementById("nome").value = "";
-    document.getElementById("consumo").value = "";
-    document.getElementById("classe").value = "";
- 
+    const body = {
+        tipo: nome,
+        consumoOrario: parseFloat(consumo),
+        classeEnergetica: classe
+    };
+    try {
+        const res = await fetch('/api/elettrodomestici', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Errore creazione');
+        await loadTable();
+    } catch (err) {
+        alert('Impossibile aggiungere: ' + err.message);
+    }
     closeModal();
 }
+ 
+async function deleteItem(id) {
+    try {
+        const res = await fetch(`/api/elettrodomestici/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('delete failed');
+        await loadTable();
+    } catch (err) {
+        console.error(err);
+    }
+}
+ 
+document.addEventListener('DOMContentLoaded', loadTable);
 </script>
  
 {% endblock %}
